@@ -1,0 +1,66 @@
+\documentclass{tufte-handout}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel}
+\spanishdecimal{.}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{minted}
+\usepackage{graphicx}
+
+\graphicspath{{../img/}}
+
+\title{Taller 2: Derivados Financieros}
+\author{Juan Pablo Calle Quintero}
+\date{16 de octubre de 2015}
+
+\begin{document}
+\maketitle
+
+\section*{Punto 1}
+
+
+
+%\begin{figure*}[!h]
+%    \includegraphics{p1_ind_prod.pdf}
+%    \caption{Serie de tiempo del índice de productividad de Canadá desde enero de 1950 hasta diciembre de 1973. Son 288 observaciones en 24 años.}
+%    \label{fig:p1_ind_prod}
+%\end{figure*}
+%
+%
+%\begin{equation} \label{eq:mod1_comp}
+%	\text{Índice Producción} = \beta_0 + \beta_1 t + \beta_2 t^2 + E_t
+%	\qquad E_t \stackrel{iid}{\sim} N(0, \sigma^2)
+%\end{equation}
+%
+%
+%\begin{table}[ht]
+%\centering
+%\begin{tabular}{lrrrrl}
+%            & Estimado & Error Estd. & Valor t & Pr($>$$|$t$|$) & \\ 
+%  \hline
+%  $\beta_0$ & 87.7218 & 0.5160 & 170.000 & $< 2E^{-16}$ & *** \\ 
+%  $\beta_1$ & -0.0278 & 0.0082 & -3.368 & 0.0009 & *** \\ 
+%  $\beta_2$ & 0.0008 & $2.7630E^{-5}$ & 29.285 & $< 2E^{-16}$ & *** \\ 
+%   \hline
+%            & $\sqrt{MSE}=2.899$ & $C^{*}_{AIC}$=2.140 & $C^{*}_{BIC}$=2.157 & \\
+%   \hline
+%\end{tabular}
+%\caption{Ajuste modelo tendencia cuadrática. $C^{*}_{AIC}$ y $C^{*}_{AIC}$ son los criterios de información por mínimos cuadrados equivalentes a los criterios AIC y BIC respectivamente.} 
+%\label{tab:mod1_comp}
+%\end{table}
+
+\pagebreak
+
+\section*{Código de R utilizado}
+% Insertar código utilizado en R
+\inputminted
+[
+    frame=none,
+    mathescape,
+    fontsize=\small
+]{r}{../r/taller2.R}
+
+
+\end{document}
