@@ -1,2 +1,15 @@
 *.zip
 *.pdf
+*.aux
+*.log
+*.out
+*.pyg
+*.gz
+*.Rhistory
+*.png
+*.jpg
+*.xls
+*.xlsx
+*.gnumeric
+*.doc
+*.docx
