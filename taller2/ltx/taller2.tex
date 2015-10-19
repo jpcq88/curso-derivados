@@ -13,43 +13,220 @@
 
 \title{Taller 2: Derivados Financieros}
 \author{Juan Pablo Calle Quintero}
-\date{16 de octubre de 2015}
+\date{19 de octubre de 2015}
 
 \begin{document}
 \maketitle
 
 \section*{Punto 1}
 
+Consideremos el que el precio de una acción en el instante $t$, $S_t$, sigue la siguiente ecuación diferencia estocástica:
+
+\begin{equation} \label{eq:p1a_ede_st}
+	\mathrm{d}S_t = \mu S_t \mathrm{d}t + \sigma S_t \mathrm{d}W
+\end{equation}
+
+\subsection*{a)}
+
+En la Figura~\ref{fig:p1_simul_precio} se observa el resultado de una simulación del precio de la acción para un periodo de un año calendario (365 días). La volatilidad anual estimada de $\sigma = 0.1$, un retorno promedio anualizado de $\mu = 0.101$ (obtenido de los retornos promedios diarios añualizados del la serie S\&P500), una tasa libre de riesgo $r = 0.05$ y un precio inicial de la acción de $S_0 = 1930$. La simulación se obtuvo con la siguiente discretización de (\ref{eq:p1a_ede_st}):
+
+\begin{equation} \label{eq:p1a_ecn_simul}
+	S_i = S_{i-1} \mathrm{e}^{(r - \frac{1}{2}\sigma^2)\mathrm{d}t + \sigma \sqrt{\mathrm{d}t} \, \phi_i}
+\end{equation}
+
+Donde $\phi_i$ es un número aleatorio extraído de una distribución normal estándar en cada iteración $i$.
+
+\begin{figure}[!h]
+    \includegraphics[scale=0.8]{p1_simul_precio.pdf}
+    \caption{Realización de una muestra del precio de la acción obtenido con simulación.}
+    \label{fig:p1_simul_precio}
+\end{figure}
+
+En esta muestra aleatoria el precio de la acción al cabo de una año es $S_T=2136$. En este caso, $max(S_t - K, 0) = 136$. Si realizamos $n = 1000$ simulaciones obtenemos la Figura~\ref{fig:p1_simul_precios}. El valor esperado estimado de las simulaciones es $\hat{E}[max(S_t - K, 0)] = 93.5891$.
+
+Por lo tanto el valor esperado de la opción en $t=0$ es:
+
+\begin{align*}
+	C(S_t,0;200,1,0.05,0.1)=\mathrm{e}^{-0.05(1)} \, \hat{E}[max(S_t - 2000, 0)] = 89.0247
+\end{align*}
+
+\begin{figure}[!h]
+    \includegraphics[scale=0.9]{p1_simul_precios.pdf}
+    \caption{Simulación monte carlo precio de la acción a un año (1000 iteraciones).}
+    \label{fig:p1_simul_precios}
+\end{figure}
+
+\subsection*{b)}
+
+De acuerdo con la fórmula de Black-Scholes, el precio de una opción call europea es:
+
+\begin{equation}
+	C = S_0 \, \Phi \left( \frac{(r+\frac{\sigma^2}{2})T + \mathrm{ln}(\frac{S_0}{K})}{\sigma \sqrt{T}} \right) - K \, \mathrm{e}^{-rT} \, \Phi \left( \frac{(r-\frac{\sigma^2}{2})T + \mathrm{ln}(\frac{S_0}{K})}{\sigma \sqrt{T}} \right)
+\end{equation}
 
 
-%\begin{figure*}[!h]
-%    \includegraphics{p1_ind_prod.pdf}
-%    \caption{Serie de tiempo del índice de productividad de Canadá desde enero de 1950 hasta diciembre de 1973. Son 288 observaciones en 24 años.}
-%    \label{fig:p1_ind_prod}
-%\end{figure*}
-%
-%
-%\begin{equation} \label{eq:mod1_comp}
-%	\text{Índice Producción} = \beta_0 + \beta_1 t + \beta_2 t^2 + E_t
-%	\qquad E_t \stackrel{iid}{\sim} N(0, \sigma^2)
-%\end{equation}
-%
-%
-%\begin{table}[ht]
-%\centering
-%\begin{tabular}{lrrrrl}
-%            & Estimado & Error Estd. & Valor t & Pr($>$$|$t$|$) & \\ 
-%  \hline
-%  $\beta_0$ & 87.7218 & 0.5160 & 170.000 & $< 2E^{-16}$ & *** \\ 
-%  $\beta_1$ & -0.0278 & 0.0082 & -3.368 & 0.0009 & *** \\ 
-%  $\beta_2$ & 0.0008 & $2.7630E^{-5}$ & 29.285 & $< 2E^{-16}$ & *** \\ 
-%   \hline
-%            & $\sqrt{MSE}=2.899$ & $C^{*}_{AIC}$=2.140 & $C^{*}_{BIC}$=2.157 & \\
-%   \hline
-%\end{tabular}
-%\caption{Ajuste modelo tendencia cuadrática. $C^{*}_{AIC}$ y $C^{*}_{AIC}$ son los criterios de información por mínimos cuadrados equivalentes a los criterios AIC y BIC respectivamente.} 
-%\label{tab:mod1_comp}
-%\end{table}
+Remplazando los valores se obtiene el precio de la opción con el modelo Balck-Scholes. El valor de la opción call es $C_0=90.9724$, muy cercano al que se obtuvo con la simulación de monte carlo. \marginnote{Con la función GBSOption() del paquete fOptions de R se obtiene el mismo resultado.}
+
+
+\subsection*{c)}
+
+Supongamos un modelo GARCH(1,1) para los log-retornos de las serie S\&P500 de la siguiente manera:
+
+\begin{align} \label{eq:p1c_garch}
+	\sigma_t^2 = \omega + \alpha U_{t-1}^2 + \beta \sigma_{t-1}^2 \: \text{ donde  } U_t = \sigma_t \epsilon_t \text{  y  } \epsilon_t \text{ ruido blanco}
+\end{align}
+
+Si ajustamos el modelo (\ref{eq:p1c_garch}) en R con la función garcFit() del paquete fGarch, obtenemos los siguientes resultados:
+
+\begin{align*}
+	\hat{\sigma}_t^2 = 6.58\times10^{-6} + 0.1830 U_{t-1}^2 + 0.7177 \sigma_{t-1}^2
+\end{align*}
+
+\begin{marginfigure}
+	\includegraphics{p1c_sigma_est.pdf}
+	\caption{Volatilidad estimada del índice S\&P500}
+\end{marginfigure}
+
+La última fecha es el el dos de octubre, por lo tanto para valorar la opción el 5 de octubre necesitamos pronosticar tres periodos adelante. Recordemos que el pronóstico $l$ periodos adelante es:
+
+\begin{align*}
+	\hat{\sigma}_t^2(l) = \omega + (\alpha + \beta) \hat{\sigma}_{t+l-1}^2
+\end{align*}
+
+Los pronósticos estimados para $l=1,2,3$ son $\hat{\sigma}_t^2(1) = 0.00061$, $\hat{\sigma}_t^2(2) = 0.00069$ y $\hat{\sigma}_t^2(3) = 0.00071$. Este último es el proóstico que nos interesa. La volatilidad que nos sirve para valorar la opción el 5 de octubre es $\sqrt{\hat{\sigma}_t^2(3)} = 0.0277$. Que anualizada equivale a $0.0277\times \sqrt{252} = 0.4245$.
+
+
+\section*{Punto 2}
+
+\subsection*{a)}
+
+Estimando la siguiente regresión en R:
+
+\begin{align*}
+	\Delta P = \beta_0 + \beta_1 \Delta F + \epsilon_t
+\end{align*}
+
+\begin{marginfigure}
+	\includegraphics{p2_reg_margen.pdf}
+	\caption{Regresión incrementos del protafolio vs. incrementos del futuro $\Delta P = \beta_0 + \beta_1 \Delta F + \epsilon_t$.}
+\end{marginfigure}
+
+Obtenemos un valor de $\hat{\beta}_1=R^2=\rho^2=0.3880$, por lo tanto, $\rho=\sqrt{0.3880}=0.6229$. Luego, el radio óptimo de cobertura $h^*$ es:
+
+\begin{align*}
+	h^* = \rho \frac{\sigma_P}{\sigma_F} = 0.6229 \frac{14778.17}{334.42} = 27.53
+\end{align*}
+
+Donde $\sigma_P = 14778.17$ es la volatilidad del portafolio y $\sigma_F = 334.42$ es la volatilidad del futuro.
+
+\subsection*{b)}
+
+El valor del portafolio es $V_P=2000\times S_{att} + 1000 \times S_{msoft} = 73400$ y el valor del futuro es $V_F=250\times 301752.5$. Por lo tanto:
+
+\begin{align*}
+	N^* = h^* \frac{V_P}{V_F} = 27.53 \frac{73400}{301752.5} = 6.7011
+\end{align*}
+
+
+\subsection*{c)}
+
+Históricamente el cambio en el valor del portafolio $\Delta P$ tiene un a media $\mu_P=-312.08$ y una desviación estándar de $\sigma_P=4587.77$. Para el portafolio $\Delta X$ los valores estimados de la media y la desviación estándar son $\mu_X=-270.52$ y $\sigma_X=4371.26$. Con estos datos simulamos $N=1000$ observaciones para los dos portafolios. En la Figura~\ref{fig:p2_densidad} se muestran los gráficos de ambas densidades estimadas.
+
+\begin{figure}[!h]
+    \includegraphics[scale=0.9]{p2_densidad.pdf}
+    \caption{Densidades de los portafolios $\Delta P$ y $\Delta X$ simulados suponiendo que se distribuyen normal. $N=1000$ observaciones simuladas.}
+    \label{fig:p2_densidad}
+\end{figure}
+
+\section*{Punto 3}
+
+Considere el proceso
+
+\begin{equation} \label{eq:p3a_rt}
+	r_t = r_0 \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			+ ab \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			\int_0^t
+				\mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s}
+			\mathrm{d}s
+\end{equation}
+
+\subsection*{a)}
+
+Veamos que (\ref{eq:p3a_rt}) cumple la ecuación diferencial estocástica
+
+\begin{equation} \label{eq:p3a_drt}
+	\mathrm{d}r_t = a(b-r_t)\mathrm{d}t + \sigma r_t \mathrm{d} W
+\end{equation}
+
+De acuedo con el lema de Itô,
+
+\begin{equation} \label{eq:p3a_ito}
+	\mathrm{d}r_t = \left( \frac{\partial r_t}{\partial r} a(b-r_t) +
+							\frac{\partial r_t}{\partial t} +
+							 r_t^2 \frac{\sigma^2}{2} \frac{\partial^2 r_t}{\partial r^2} \right) \mathrm{d}t
+					+ r_t \sigma \frac{\partial r_t}{\partial r} \mathrm{d}W
+\end{equation}
+
+Remplazando (\ref{eq:p3a_rt}) en (\ref{eq:p3a_ito}) y notando que $r_t$ no depende de $r$, solo de $t$, entonces tenemos que:
+
+\begin{align*}
+	\mathrm{d}r_t =\; & \frac{\partial r_t}{\partial t} \\
+				  =\; & \frac{\partial}{\partial t} \left(r_0 \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			+ ab \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			\int_0^t
+				\mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s}
+			\mathrm{d}s \right) \\
+			=\; & r_0 (-a \mathrm{d}t + \sigma \mathrm{d}W)\mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t} + ab\mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t} \mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s} \mathrm{d}t \\
+			& + ab (-a \mathrm{d}t + \sigma \mathrm{d}W)\mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}\int_0^t
+				\mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s}
+			\mathrm{d}s \\
+			=\; & ab \mathrm{d}t - a r_0 \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t} \mathrm{d}t + - \left[a^2 b \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}\int_0^t
+				\mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s}
+			\mathrm{d}s \right] \mathrm{d}t \\
+			& + \sigma \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t} \mathrm{d}W + \left[ ab \sigma \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}\int_0^t
+				\mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s}
+			\mathrm{d}s \right] \mathrm{d}W \\
+			=\; & a(b-r_0 \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t} - ab \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			\int_0^t
+				\mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s}
+			\mathrm{d}s) \mathrm{d}t \\
+			& + \sigma (r_0 \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			+ ab \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			\int_0^t
+				\mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s}
+			\mathrm{d}s) \mathrm{d}W \\
+			=\; & a(b-r_t)\mathrm{d}t + \sigma r_t \mathrm{d} W
+\end{align*}
+
+\subsection*{b)}
+
+El proceso $B_t = 1000 \mathrm{e}^{r_t}$ es función de $r_t$. Supongamos que sigue un proceso de Itô de la forma:
+
+\begin{equation} \label{eq:p3b_ito}
+	\mathrm{d}B_t = \alpha(r_t,t) \mathrm{d}t + \beta(r_t,t) \mathrm{d}W
+\end{equation}
+
+Luego, por lema de Itô,
+
+\begin{equation} \label{eq:p3b_ito2}
+	\mathrm{d}B_t = \left( \frac{\partial B_t}{\partial r} \alpha(r_t,t) +
+							\frac{\partial B_t}{\partial t} +
+							 \beta(r_t,t)^2 \frac{\partial^2 B_t}{\partial r^2} \right) \mathrm{d}t
+					+ \beta(r_t,t) B_t \frac{\partial B_t}{\partial r} \mathrm{d}W
+\end{equation}
+
+Notemos que las derivadas con respecto a $r$ son cero, ya que $r_t$ no depende de r como en eel puento anterior. Luego,
+
+\begin{align*} \label{eq:p3b_ito2}
+	\mathrm{d}B_t = & \left(\frac{\partial B_t}{\partial t}\right) \mathrm{d}t \\
+				= & \frac{\partial}{\partial t} \left( exp(r_0 \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			+ ab \, \mathrm{e}^{(-a - \frac{\sigma^2}{2}) t + \sigma W_t}
+			\int_0^t
+				\mathrm{e}^{(a + \frac{\sigma^2}{2}) s - \sigma W_s}
+			\mathrm{d}s) \right) \mathrm{d}t \\
+			= & \frac{\partial r_t}{\partial t} \mathrm{e}^{r_t} \mathrm{d}t \\
+			= & (a(b-r_t)dt + \sigma r_t \mathrm{d}W)\mathrm{e}^{r_t} \mathrm{d}t
+\end{align*}
 
 \pagebreak
 
