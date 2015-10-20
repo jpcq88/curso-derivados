@@ -138,7 +138,7 @@ simul_st <- sim_st(tpo_al_venc, S0 = S0,
 # Guarda el gráfico en la carpeta img con el nombre p1_simul_precio.pdf
 pdf(file = '../img/p1_simul_precio.pdf', width = 5, height = 4)
 
-opar <- par()
+opar <- par(no.readonly = TRUE)
 par(mar = c(2, 4, 1, 1))
 plot(simul_st, type = 'l',
      xlab = '',
@@ -171,7 +171,7 @@ simul_precios <- replicate(nro_replicas,
 # Guarda el gráfico en la carpeta img con el nombre p1_simul_precios.pdf
 pdf(file = '../img/p1_simul_precios.pdf', width = 5, height = 4)
 
-opar <- par()
+opar <- par(no.readonly = TRUE)
 par(mar = c(2, 4, 1, 1), cex.lab = 0.8, cex.axis = 0.6)
 ts.plot(simul_precios, lwd = 0.2,
         xlab = '', ylab = 'Precio de la acción', xlim = c(0, year_days + 40))
@@ -230,7 +230,7 @@ garch11@sigma.t # varianzas estimadas
 # Gráfico de volatilidad estimada
 pdf(file = '../img/p1c_sigma_est.pdf', width = 2.5, height = 1.5)
 
-opar <- par()
+opar <- par(no.readonly = TRUE)
 par(mar = c(1, 2, 1, 1), cex.lab = 0.4, cex.axis = 0.4)
 plot(sqrt(garch11@sigma.t),
      type = 'l', xlab = '', ylab = '', bty = 'n', xaxt = 'n',
