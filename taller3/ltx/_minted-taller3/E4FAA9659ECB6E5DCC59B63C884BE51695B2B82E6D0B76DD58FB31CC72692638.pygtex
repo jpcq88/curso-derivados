@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+EuropeanOptionImpliedVolatility\PYGdefault{p}{(}type \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}call\PYGdefaultZsq{}}\PYGdefault{p}{,} value \PYGdefault{o}{=} \PYGdefault{l+m}{153.65}\PYGdefault{p}{,}
+                                underlying \PYGdefault{o}{=} \PYGdefault{l+m}{2102.31}\PYGdefault{p}{,} strike \PYGdefault{o}{=} \PYGdefault{l+m}{2110.20}\PYGdefault{p}{,}
+                                riskFreeRate \PYGdefault{o}{=} \PYGdefault{l+m}{0.05}\PYGdefault{p}{,} dividendYield \PYGdefault{o}{=} \PYGdefault{l+m}{0}\PYGdefault{p}{,}
+                                maturity \PYGdefault{o}{=} \PYGdefault{l+m}{44} \PYGdefault{o}{/} \PYGdefault{l+m}{365}\PYGdefault{p}{,} volatility \PYGdefault{o}{=} \PYGdefault{l+m}{0.25}\PYGdefault{p}{)}
+\end{Verbatim}

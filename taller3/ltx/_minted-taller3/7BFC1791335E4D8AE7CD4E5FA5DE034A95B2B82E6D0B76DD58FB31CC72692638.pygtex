@@ -1,0 +1,17 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+precio\PYGdefaultZus{}k1 \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} GBSOption\PYGdefault{p}{(}TypeFlag \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}c\PYGdefaultZsq{}}\PYGdefault{p}{,}
+                       S \PYGdefault{o}{=} S0\PYGdefault{p}{,}
+                       X \PYGdefault{o}{=} K1\PYGdefault{p}{,}
+                       Time \PYGdefault{o}{=} tiempo\PYGdefaultZus{}venc\PYGdefault{p}{,}
+                       r \PYGdefault{o}{=} tasa\PYGdefaultZus{}lr\PYGdefault{p}{,}
+                       b \PYGdefault{o}{=} tasa\PYGdefaultZus{}lr\PYGdefault{p}{,}
+                       sigma \PYGdefault{o}{=} sigma\PYGdefault{p}{)}\PYGdefault{o}{@}price \PYGdefault{c+c1}{\PYGdefaultZsh{} $C_{K1} = 7.8967$}
+
+precio\PYGdefaultZus{}k2 \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} GBSOption\PYGdefault{p}{(}TypeFlag \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}c\PYGdefaultZsq{}}\PYGdefault{p}{,}
+                       S \PYGdefault{o}{=} S0\PYGdefault{p}{,}
+                       X \PYGdefault{o}{=} K2\PYGdefault{p}{,}
+                       Time \PYGdefault{o}{=} tiempo\PYGdefaultZus{}venc\PYGdefault{p}{,}
+                       r \PYGdefault{o}{=} tasa\PYGdefaultZus{}lr\PYGdefault{p}{,}
+                       b \PYGdefault{o}{=} tasa\PYGdefaultZus{}lr\PYGdefault{p}{,}
+                       sigma \PYGdefault{o}{=} sigma\PYGdefault{p}{)}\PYGdefault{o}{@}price \PYGdefault{c+c1}{\PYGdefaultZsh{} $C_{K2} = 4.1837$}
+\end{Verbatim}

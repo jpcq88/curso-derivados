@@ -1,0 +1,218 @@
+\begin{Verbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8}]
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{} \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Taller 3: Derivados Financieros}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Juan Pablo Calle Quintero}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} jpcalleq@unal.edu.co}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Última modificación: 16 de noviembre de 2015}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} }
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Puede descragar este código en el siguiente enlace:}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} https://github.com/jpcq88/curso\PYGdefaultZhy{}derivados/tree/master/taller3}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}}
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{} \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{} Librerías requeridas \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}
+
+\PYGdefault{k+kn}{library}\PYGdefault{p}{(}fOptions\PYGdefault{p}{)} \PYGdefault{c+c1}{\PYGdefaultZsh{} valoración de opciones}
+\PYGdefault{k+kn}{library}\PYGdefault{p}{(}ggplot2\PYGdefault{p}{)} \PYGdefault{c+c1}{\PYGdefaultZsh{} gráficos de calidad}
+\PYGdefault{k+kn}{library}\PYGdefault{p}{(}gridExtra\PYGdefault{p}{)} \PYGdefault{c+c1}{\PYGdefaultZsh{} herramientas adicionales para graficar, grid.arrange()}
+\PYGdefault{k+kn}{library}\PYGdefault{p}{(}data.table\PYGdefault{p}{)} \PYGdefault{c+c1}{\PYGdefaultZsh{} manipulación de datos}
+\PYGdefault{k+kn}{library}\PYGdefault{p}{(}RQuantLib\PYGdefault{p}{)} \PYGdefault{c+c1}{\PYGdefaultZsh{} funciones varias de finanzas cuantitativas}
+\PYGdefault{k+kn}{library}\PYGdefault{p}{(}GUIDE\PYGdefault{p}{)} \PYGdefault{c+c1}{\PYGdefaultZsh{} otras funciones para valorar opciones}
+
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{} Definición de funciones \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Gráfico en blanco, a veces útil para usar con la función grid.arrange()}
+blankPlot \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} ggplot\PYGdefault{p}{()} \PYGdefault{o}{+} geom\PYGdefaultZus{}blank\PYGdefault{p}{(}aes\PYGdefault{p}{(}\PYGdefault{l+m}{1}\PYGdefault{p}{,} \PYGdefault{l+m}{1}\PYGdefault{p}{))} \PYGdefault{o}{+}
+  theme\PYGdefault{p}{(}
+    plot.background \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),} 
+    panel.grid.major \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),}
+    panel.grid.minor \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),} 
+    panel.border \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),}
+    panel.background \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),}
+    axis.title.x \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),}
+    axis.title.y \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),}
+    axis.text.x \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),} 
+    axis.text.y \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),}
+    axis.ticks \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{(),}
+    axis.line \PYGdefault{o}{=} element\PYGdefaultZus{}blank\PYGdefault{p}{()}
+  \PYGdefault{p}{)}
+
+sim\PYGdefaultZus{}st \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{k+kr}{function}\PYGdefault{p}{(}tpo\PYGdefault{p}{,} S0\PYGdefault{p}{,} mu \PYGdefault{o}{=} \PYGdefault{l+m}{0.15}\PYGdefault{p}{,} sigma \PYGdefault{o}{=} \PYGdefault{l+m}{0.25}\PYGdefault{p}{,} r \PYGdefault{o}{=} mu\PYGdefault{p}{,} dt \PYGdefault{o}{=} \PYGdefault{l+m}{0.01}\PYGdefault{p}{)} \PYGdefault{p}{\PYGdefaultZob{}}
+  \PYGdefault{c+c1}{\PYGdefaultZsh{} Simulación precio St de un activo}
+  \PYGdefault{c+c1}{\PYGdefaultZsh{} po: tiempo en años}
+  \PYGdefault{c+c1}{\PYGdefaultZsh{} S0: precio inicial del activo}
+  \PYGdefault{c+c1}{\PYGdefaultZsh{} mu: retorno esperado del activo anualizado}
+  \PYGdefault{c+c1}{\PYGdefaultZsh{} sigma: volatilidad de los retornos del activo anualizado}
+  \PYGdefault{c+c1}{\PYGdefaultZsh{} r: tasa libre de riesgo anualizada}
+  \PYGdefault{c+c1}{\PYGdefaultZsh{} dt: time step (debe ser menor o igual a tpo)}
+  
+  steps \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} tpo \PYGdefault{o}{/} dt
+  St \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{k+kt}{vector}\PYGdefault{p}{(}mode \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}numeric\PYGdefaultZsq{}}\PYGdefault{p}{,} length \PYGdefault{o}{=} steps\PYGdefault{p}{)}
+  St\PYGdefault{p}{[}\PYGdefault{l+m}{1}\PYGdefault{p}{]} \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} S0
+  
+  \PYGdefault{k+kr}{for} \PYGdefault{p}{(}i \PYGdefault{k+kr}{in} \PYGdefault{l+m}{2}\PYGdefault{o}{:}steps\PYGdefault{p}{)} \PYGdefault{p}{\PYGdefaultZob{}}
+    
+    \PYGdefault{c+c1}{\PYGdefaultZsh{} $S_i=S_{i-1} e^{(r-\frac{1}{2}\sigma^2)dt + \sigma\sqrt{dt}\phi_i}$}
+    St\PYGdefault{p}{[}i\PYGdefault{p}{]} \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}}
+      St\PYGdefault{p}{[}i \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{l+m}{1}\PYGdefault{p}{]} \PYGdefault{o}{*} \PYGdefault{k+kp}{exp}\PYGdefault{p}{((}r \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{l+m}{0.5} \PYGdefault{o}{*} sigma \PYGdefault{o}{\PYGdefaultZca{}} \PYGdefault{l+m}{2}\PYGdefault{p}{)}\PYGdefault{o}{*}dt \PYGdefault{o}{+} sigma \PYGdefault{o}{*} \PYGdefault{k+kp}{sqrt}\PYGdefault{p}{(}dt\PYGdefault{p}{)} \PYGdefault{o}{*} rnorm\PYGdefault{p}{(}\PYGdefault{l+m}{1}\PYGdefault{p}{))}
+  \PYGdefault{p}{\PYGdefaultZcb{}}
+  
+  \PYGdefault{k+kr}{return}\PYGdefault{p}{(}St\PYGdefault{p}{)}
+\PYGdefault{p}{\PYGdefaultZcb{}}
+
+ret\PYGdefaultZus{}crit \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{k+kr}{function}\PYGdefault{p}{(}x\PYGdefault{p}{,} v.crit\PYGdefault{p}{)} \PYGdefault{p}{\PYGdefaultZob{}}
+  \PYGdefault{c+c1}{\PYGdefaultZsh{} función para identificar los valores críticos}
+  tmp \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{k+kt}{vector}\PYGdefault{p}{(}length \PYGdefault{o}{=} \PYGdefault{k+kp}{length}\PYGdefault{p}{(}x\PYGdefault{p}{))}
+  \PYGdefault{k+kr}{for} \PYGdefault{p}{(}i \PYGdefault{k+kr}{in} \PYGdefault{k+kp}{seq\PYGdefaultZus{}along}\PYGdefault{p}{(}tmp\PYGdefault{p}{))} \PYGdefault{p}{\PYGdefaultZob{}}
+    \PYGdefault{k+kr}{if} \PYGdefault{p}{(}x\PYGdefault{p}{[}i\PYGdefault{p}{]} \PYGdefault{o}{\PYGdefaultZlt{}} \PYGdefault{o}{\PYGdefaultZhy{}}\PYGdefault{k+kp}{abs}\PYGdefault{p}{(}v.crit\PYGdefault{p}{))} \PYGdefault{p}{\PYGdefaultZob{}}
+      tmp\PYGdefault{p}{[}i\PYGdefault{p}{]} \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+s}{\PYGdefaultZsq{}\PYGdefaultZlt{} val crit\PYGdefaultZsq{}}
+    \PYGdefault{p}{\PYGdefaultZcb{}} \PYGdefault{k+kr}{else} \PYGdefault{k+kr}{if} \PYGdefault{p}{(}x\PYGdefault{p}{[}i\PYGdefault{p}{]} \PYGdefault{o}{\PYGdefaultZgt{}} \PYGdefault{k+kp}{abs}\PYGdefault{p}{(}v.crit\PYGdefault{p}{))} \PYGdefault{p}{\PYGdefaultZob{}}
+      tmp\PYGdefault{p}{[}i\PYGdefault{p}{]} \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+s}{\PYGdefaultZsq{}\PYGdefaultZgt{} val crit\PYGdefaultZsq{}}
+    \PYGdefault{p}{\PYGdefaultZcb{}} \PYGdefault{k+kr}{else} \PYGdefault{p}{\PYGdefaultZob{}}
+      tmp\PYGdefault{p}{[}i\PYGdefault{p}{]} \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+s}{\PYGdefaultZsq{}x\PYGdefaultZsq{}}
+    \PYGdefault{p}{\PYGdefaultZcb{}}
+  \PYGdefault{p}{\PYGdefaultZcb{}}
+  \PYGdefault{k+kr}{return}\PYGdefault{p}{(}tmp\PYGdefault{p}{)}
+\PYGdefault{p}{\PYGdefaultZcb{}}
+
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{} Lectura de datos \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}
+
+sp500\PYGdefaultZus{}idx \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} fread\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZsq{}../datos/datos\PYGdefaultZus{}sp500.csv\PYGdefaultZsq{}}\PYGdefault{p}{,} header \PYGdefault{o}{=} \PYGdefault{k+kc}{TRUE}\PYGdefault{p}{)}
+sp500\PYGdefaultZus{}idx\PYGdefault{p}{[,} fecha \PYGdefault{o}{:=} \PYGdefault{k+kp}{as.Date}\PYGdefault{p}{(}fecha\PYGdefault{p}{,} format \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}\PYGdefaultZpc{}Y\PYGdefaultZhy{}\PYGdefaultZpc{}m\PYGdefaultZhy{}\PYGdefaultZpc{}d\PYGdefaultZsq{}}\PYGdefault{p}{)]}
+sp500\PYGdefaultZus{}idx
+sp500\PYGdefaultZus{}opt \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} fread\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZsq{}../datos/datos\PYGdefaultZus{}sp500\PYGdefaultZus{}opt.csv\PYGdefaultZsq{}}\PYGdefault{p}{,} header \PYGdefault{o}{=} \PYGdefault{k+kc}{TRUE}\PYGdefault{p}{)}
+sp500\PYGdefaultZus{}opt
+strike \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} read.csv\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZsq{}../datos/strike.csv\PYGdefaultZsq{}}\PYGdefault{p}{,} header \PYGdefault{o}{=} \PYGdefault{k+kc}{TRUE}\PYGdefault{p}{)}
+
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{} Análisis descriptivo \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Gráfico opción sobre el índice S\PYGdefaultZam{}P500}
+precio\PYGdefaultZus{}opt \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} ggplot\PYGdefault{p}{(}data \PYGdefault{o}{=} sp500\PYGdefaultZus{}opt\PYGdefault{p}{)} \PYGdefault{o}{+} theme\PYGdefaultZus{}bw\PYGdefault{p}{(}\PYGdefault{l+m}{12}\PYGdefault{p}{)} \PYGdefault{o}{+}
+  geom\PYGdefaultZus{}line\PYGdefault{p}{(}aes\PYGdefault{p}{(}x \PYGdefault{o}{=} \PYGdefault{l+m}{1}\PYGdefault{o}{:}\PYGdefault{k+kp}{length}\PYGdefault{p}{(}sp500\PYGdefaultZus{}opt\PYGdefault{p}{),} y \PYGdefault{o}{=} sp500\PYGdefaultZus{}opt\PYGdefault{p}{))} \PYGdefault{o}{+}
+  labs\PYGdefault{p}{(}x \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}\PYGdefaultZsq{}}\PYGdefault{p}{,}
+       y \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}Precio Opción S\PYGdefaultZam{}P500\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Gráfico índice S\PYGdefaultZam{}P500}
+precio\PYGdefaultZus{}idx \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} ggplot\PYGdefault{p}{(}data \PYGdefault{o}{=} sp500\PYGdefaultZus{}idx\PYGdefault{p}{)} \PYGdefault{o}{+} theme\PYGdefaultZus{}bw\PYGdefault{p}{(}\PYGdefault{l+m}{12}\PYGdefault{p}{)} \PYGdefault{o}{+}
+  geom\PYGdefaultZus{}line\PYGdefault{p}{(}aes\PYGdefault{p}{(}x \PYGdefault{o}{=} fecha\PYGdefault{p}{,} y \PYGdefault{o}{=} sp500\PYGdefault{p}{))} \PYGdefault{o}{+}
+  labs\PYGdefault{p}{(}x \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}\PYGdefaultZsq{}}\PYGdefault{p}{,}
+       y \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}Precio Índice S\PYGdefaultZam{}P500\PYGdefaultZsq{}}\PYGdefault{p}{)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Guardamos gráficos en formato pdf}
+pdf\PYGdefault{p}{(}file \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}../img/graficos\PYGdefaultZus{}series.pdf\PYGdefaultZsq{}}\PYGdefault{p}{,} width \PYGdefault{o}{=} \PYGdefault{l+m}{7}\PYGdefault{p}{,} height \PYGdefault{o}{=} \PYGdefault{l+m}{5}\PYGdefault{p}{)}
+
+grid.arrange\PYGdefault{p}{(}precio\PYGdefaultZus{}idx\PYGdefault{p}{,} precio\PYGdefaultZus{}opt\PYGdefault{p}{,} nrow \PYGdefault{o}{=} \PYGdefault{l+m}{1}\PYGdefault{p}{,} ncol \PYGdefault{o}{=} \PYGdefault{l+m}{2}\PYGdefault{p}{)}
+
+dev.off\PYGdefault{p}{()}
+
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{} Punto 1 \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} a)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} del 4 de noviembre al tercer viernes de diciembre (18/12/2015) hay 44 días}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} El precio de cierre del índice S\PYGdefaultZam{}P500 el 4 de niviembre era 2102.31}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} El precio de ejercicio es 2110.20}
+
+vol\PYGdefaultZus{}imp \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{k+kr}{function}\PYGdefault{p}{(}option\PYGdefaultZus{}value\PYGdefault{p}{)} \PYGdefault{p}{\PYGdefaultZob{}}
+  iv \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} EuropeanOptionImpliedVolatility\PYGdefault{p}{(}type \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}call\PYGdefaultZsq{}}\PYGdefault{p}{,} value \PYGdefault{o}{=} option\PYGdefaultZus{}value\PYGdefault{p}{,}
+                                  underlying \PYGdefault{o}{=} \PYGdefault{l+m}{2102.31}\PYGdefault{p}{,} strike \PYGdefault{o}{=} \PYGdefault{l+m}{2110.20}\PYGdefault{p}{,}
+                                  riskFreeRate \PYGdefault{o}{=} \PYGdefault{l+m}{0.05}\PYGdefault{p}{,} dividendYield \PYGdefault{o}{=} \PYGdefault{l+m}{0}\PYGdefault{p}{,}
+                                  maturity \PYGdefault{o}{=} Tmat\PYGdefault{p}{,} volatility \PYGdefault{o}{=} \PYGdefault{l+m}{0.25}\PYGdefault{p}{)}
+  \PYGdefault{k+kr}{return}\PYGdefault{p}{(}iv\PYGdefault{p}{[}\PYGdefault{l+m}{1}\PYGdefault{p}{])}
+\PYGdefault{p}{\PYGdefaultZcb{}}
+
+Tmat \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{k+kp}{as.numeric}\PYGdefault{p}{(}\PYGdefault{k+kp}{difftime}\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZdq{}2015\PYGdefaultZhy{}12\PYGdefaultZhy{}18\PYGdefaultZdq{}}\PYGdefault{p}{,}\PYGdefault{l+s}{\PYGdefaultZdq{}2015\PYGdefaultZhy{}11\PYGdefaultZhy{}04\PYGdefaultZdq{}}\PYGdefault{p}{))} \PYGdefault{o}{/} \PYGdefault{l+m}{365.24}
+EuropeanOptionImpliedVolatility\PYGdefault{p}{(}type \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}call\PYGdefaultZsq{}}\PYGdefault{p}{,} value \PYGdefault{o}{=} \PYGdefault{l+m}{153.65}\PYGdefault{p}{,}
+                                underlying \PYGdefault{o}{=} \PYGdefault{l+m}{2102.31}\PYGdefault{p}{,} strike \PYGdefault{o}{=} \PYGdefault{l+m}{2110.20}\PYGdefault{p}{,}
+                                riskFreeRate \PYGdefault{o}{=} \PYGdefault{l+m}{0.05}\PYGdefault{p}{,} dividendYield \PYGdefault{o}{=} \PYGdefault{l+m}{0}\PYGdefault{p}{,}
+                                maturity \PYGdefault{o}{=} Tmat\PYGdefault{p}{,} volatility \PYGdefault{o}{=} \PYGdefault{l+m}{0.25}\PYGdefault{p}{)[}\PYGdefault{l+m}{1}\PYGdefault{p}{]}
+vol\PYGdefaultZus{}imp\PYGdefault{p}{(}\PYGdefault{l+m}{153.24}\PYGdefault{p}{)}
+imp\PYGdefaultZus{}vol \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{k+kp}{sapply}\PYGdefault{p}{(}sp500\PYGdefaultZus{}opt\PYGdefault{p}{[}\PYGdefault{l+m}{1}\PYGdefault{o}{:}\PYGdefault{l+m}{43}\PYGdefault{p}{,} sp500\PYGdefaultZus{}opt\PYGdefault{p}{],} vol\PYGdefaultZus{}imp\PYGdefault{p}{)}
+precio\PYGdefaultZus{}opt \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} sp500\PYGdefaultZus{}opt\PYGdefault{p}{[}\PYGdefault{l+m}{1}\PYGdefault{o}{:}\PYGdefault{l+m}{43}\PYGdefault{p}{,} sp500\PYGdefaultZus{}opt\PYGdefault{p}{]}
+
+dat\PYGdefaultZus{}tmp \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{k+kt}{data.frame}\PYGdefault{p}{(}strike\PYGdefault{o}{\PYGdefaultZdl{}}strike\PYGdefault{p}{,} imp\PYGdefaultZus{}vol\PYGdefault{p}{)}
+
+pdf\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZsq{}../img/p1a\PYGdefaultZus{}grafico.pdf\PYGdefaultZsq{}}\PYGdefault{p}{,} width \PYGdefault{o}{=} \PYGdefault{l+m}{5}\PYGdefault{p}{,} height \PYGdefault{o}{=} \PYGdefault{l+m}{5}\PYGdefault{p}{)}
+ggplot\PYGdefault{p}{(}data \PYGdefault{o}{=} dat\PYGdefaultZus{}tmp\PYGdefault{p}{)} \PYGdefault{o}{+} theme\PYGdefaultZus{}bw\PYGdefault{p}{(}\PYGdefault{l+m}{12}\PYGdefault{p}{)} \PYGdefault{o}{+}
+  geom\PYGdefaultZus{}line\PYGdefault{p}{(}aes\PYGdefault{p}{(}x \PYGdefault{o}{=} strike.strike\PYGdefault{p}{,} y \PYGdefault{o}{=} imp\PYGdefaultZus{}vol\PYGdefault{p}{))} \PYGdefault{o}{+}
+  labs\PYGdefault{p}{(}x \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}Strike\PYGdefaultZsq{}}\PYGdefault{p}{,} y \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}Volatilidad implícita\PYGdefaultZsq{}}\PYGdefault{p}{)}
+dev.off\PYGdefault{p}{()}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} b)}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Calcular los log\PYGdefaultZhy{}retornos del índice S\PYGdefaultZam{}P500, quedan almacenados en sp500\PYGdefaultZus{}r}
+sp500\PYGdefaultZus{}idx\PYGdefault{p}{[,} sp500\PYGdefaultZus{}r \PYGdefault{o}{:=} \PYGdefault{k+kt}{c}\PYGdefault{p}{(}\PYGdefault{k+kc}{NA}\PYGdefault{p}{,} \PYGdefault{c+c1}{\PYGdefaultZsh{} se pierde el primer dato al diferenciar}
+                        \PYGdefault{k+kp}{log}\PYGdefault{p}{(}sp500\PYGdefault{p}{[}\PYGdefault{l+m}{2}\PYGdefault{o}{:}\PYGdefault{l+m}{.}N\PYGdefault{p}{])} \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{k+kp}{log}\PYGdefault{p}{(}sp500\PYGdefault{p}{[}\PYGdefault{l+m}{1}\PYGdefault{o}{:}\PYGdefault{p}{(}\PYGdefault{l+m}{.}N \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{l+m}{1}\PYGdefault{p}{)]))]}
+sp500\PYGdefaultZus{}idx
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Cálculo volatilidad diaria de los log\PYGdefaultZhy{}retornos del índice S\PYGdefaultZam{}P500}
+\PYGdefault{p}{(}mu\PYGdefaultZus{}ret\PYGdefaultZus{}sp500\PYGdefaultZus{}dia \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} sp500\PYGdefaultZus{}idx\PYGdefault{p}{[,} \PYGdefault{k+kp}{mean}\PYGdefault{p}{(}sp500\PYGdefaultZus{}r\PYGdefault{p}{,} na.rm \PYGdefault{o}{=} \PYGdefault{k+kc}{TRUE}\PYGdefault{p}{)])}
+\PYGdefault{p}{(}sd\PYGdefaultZus{}ret\PYGdefaultZus{}sp500\PYGdefaultZus{}dia \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} sp500\PYGdefaultZus{}idx\PYGdefault{p}{[,} sd\PYGdefault{p}{(}sp500\PYGdefaultZus{}r\PYGdefault{p}{,} na.rm \PYGdefault{o}{=} \PYGdefault{k+kc}{TRUE}\PYGdefault{p}{)])}
+sd\PYGdefaultZus{}ret\PYGdefaultZus{}sp500\PYGdefaultZus{}dia \PYGdefault{o}{*} \PYGdefault{k+kp}{sqrt}\PYGdefault{p}{(}\PYGdefault{l+m}{252}\PYGdefault{p}{)}
+val\PYGdefaultZus{}critico \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+m}{3} \PYGdefault{o}{*} sd\PYGdefaultZus{}ret\PYGdefaultZus{}sp500\PYGdefaultZus{}dia
+
+ret\PYGdefaultZus{}2a \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} sp500\PYGdefaultZus{}idx\PYGdefault{p}{[(}\PYGdefault{l+m}{.}N \PYGdefault{o}{\PYGdefaultZhy{}} \PYGdefault{l+m}{2} \PYGdefault{o}{*} \PYGdefault{l+m}{252}\PYGdefault{p}{)}\PYGdefault{o}{:}\PYGdefault{l+m}{.}N\PYGdefault{p}{,} \PYGdefault{l+m}{.}\PYGdefault{p}{(}fecha\PYGdefault{p}{,} sp500\PYGdefaultZus{}r\PYGdefault{p}{)]}
+
+ret\PYGdefaultZus{}2a\PYGdefault{p}{[,} val\PYGdefaultZus{}crit \PYGdefault{o}{:=} ret\PYGdefaultZus{}crit\PYGdefault{p}{(}sp500\PYGdefaultZus{}r\PYGdefault{p}{,} val\PYGdefaultZus{}critico\PYGdefault{p}{)]}
+
+ret\PYGdefaultZus{}2a\PYGdefault{p}{[,} \PYGdefault{k+kp}{table}\PYGdefault{p}{(}val\PYGdefaultZus{}crit\PYGdefault{p}{)]} \PYGdefault{c+c1}{\PYGdefaultZsh{} frecuencia}
+ret\PYGdefaultZus{}2a\PYGdefault{p}{[,} \PYGdefault{k+kp}{prop.table}\PYGdefault{p}{(}\PYGdefault{k+kp}{table}\PYGdefault{p}{(}val\PYGdefaultZus{}crit\PYGdefault{p}{))]} \PYGdefault{c+c1}{\PYGdefaultZsh{} proporciones}
+
+ret\PYGdefaultZus{}2a\PYGdefault{p}{[,} col\PYGdefaultZus{}val\PYGdefaultZus{}crit \PYGdefault{o}{:=} \PYGdefault{l+s}{\PYGdefaultZsq{}black\PYGdefaultZsq{}}\PYGdefault{p}{]} \PYGdefault{c+c1}{\PYGdefaultZsh{} definir colores del gráfico}
+ret\PYGdefaultZus{}2a\PYGdefault{p}{[}val\PYGdefaultZus{}crit \PYGdefault{o}{==} \PYGdefault{l+s}{\PYGdefaultZsq{}\PYGdefaultZlt{} val crit\PYGdefaultZsq{}}\PYGdefault{p}{,} col\PYGdefaultZus{}val\PYGdefaultZus{}crit \PYGdefault{o}{:=} \PYGdefault{l+s}{\PYGdefaultZsq{}red\PYGdefaultZsq{}}\PYGdefault{p}{]}
+ret\PYGdefaultZus{}2a\PYGdefault{p}{[}val\PYGdefaultZus{}crit \PYGdefault{o}{==} \PYGdefault{l+s}{\PYGdefaultZsq{}\PYGdefaultZgt{} val crit\PYGdefaultZsq{}}\PYGdefault{p}{,} col\PYGdefaultZus{}val\PYGdefaultZus{}crit \PYGdefault{o}{:=} \PYGdefault{l+s}{\PYGdefaultZsq{}blue\PYGdefaultZsq{}}\PYGdefault{p}{]}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Guardar gráfico en pdf}
+pdf\PYGdefault{p}{(}\PYGdefault{l+s}{\PYGdefaultZsq{}../img/p1b\PYGdefaultZus{}grafico.pdf\PYGdefaultZsq{}}\PYGdefault{p}{,} width \PYGdefault{o}{=} \PYGdefault{l+m}{5}\PYGdefault{p}{,} height \PYGdefault{o}{=} \PYGdefault{l+m}{5}\PYGdefault{p}{)}
+ggplot\PYGdefault{p}{(}data \PYGdefault{o}{=} ret\PYGdefaultZus{}2a\PYGdefault{p}{)} \PYGdefault{o}{+} theme\PYGdefaultZus{}bw\PYGdefault{p}{(}\PYGdefault{l+m}{12}\PYGdefault{p}{)} \PYGdefault{o}{+}
+  geom\PYGdefaultZus{}line\PYGdefault{p}{(}aes\PYGdefault{p}{(}x \PYGdefault{o}{=} fecha\PYGdefault{p}{,} y \PYGdefault{o}{=} sp500\PYGdefaultZus{}r\PYGdefault{p}{))} \PYGdefault{o}{+}
+  geom\PYGdefaultZus{}point\PYGdefault{p}{(}aes\PYGdefault{p}{(}x \PYGdefault{o}{=} fecha\PYGdefault{p}{,} y \PYGdefault{o}{=} sp500\PYGdefaultZus{}r\PYGdefault{p}{),} colour \PYGdefault{o}{=} ret\PYGdefaultZus{}2a\PYGdefault{p}{[,} col\PYGdefaultZus{}val\PYGdefaultZus{}crit\PYGdefault{p}{])} \PYGdefault{o}{+}
+  geom\PYGdefaultZus{}hline\PYGdefault{p}{(}yintercept \PYGdefault{o}{=} \PYGdefault{k+kt}{c}\PYGdefault{p}{(}\PYGdefault{o}{\PYGdefaultZhy{}}val\PYGdefaultZus{}critico\PYGdefault{p}{,} val\PYGdefaultZus{}critico\PYGdefault{p}{),} linetype \PYGdefault{o}{=} \PYGdefault{l+m}{2}\PYGdefault{p}{)} \PYGdefault{o}{+}
+  labs\PYGdefault{p}{(}y \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}log\PYGdefaultZhy{}retornos índice S\PYGdefaultZam{}P500\PYGdefaultZsq{}}\PYGdefault{p}{)}
+dev.off\PYGdefault{p}{()}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} c)}
+
+curve\PYGdefault{p}{(}dlnorm\PYGdefault{p}{(}x\PYGdefault{p}{,} \PYGdefault{l+m}{0}\PYGdefault{p}{,} \PYGdefault{l+m}{0.25}\PYGdefault{p}{),} xlim \PYGdefault{o}{=} \PYGdefault{k+kt}{c}\PYGdefault{p}{(}\PYGdefault{l+m}{0}\PYGdefault{p}{,} \PYGdefault{l+m}{3}\PYGdefault{p}{),} ylim \PYGdefault{o}{=} \PYGdefault{k+kt}{c}\PYGdefault{p}{(}\PYGdefault{l+m}{0}\PYGdefault{p}{,} \PYGdefault{l+m}{2}\PYGdefault{p}{))}
+curve\PYGdefault{p}{(}dlnorm\PYGdefault{p}{(}x\PYGdefault{p}{,} \PYGdefault{l+m}{0}\PYGdefault{p}{,} \PYGdefault{l+m}{0.5}\PYGdefault{p}{),} add \PYGdefault{o}{=} \PYGdefault{k+kc}{TRUE}\PYGdefault{p}{)}
+
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{}\PYGdefaultZsh{} Punto 2 \PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}\PYGdefaultZhy{}}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} a)}
+
+K1 \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+m}{25} \PYGdefault{c+c1}{\PYGdefaultZsh{} long call strike}
+K2 \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+m}{30} \PYGdefault{c+c1}{\PYGdefaultZsh{} short call strike}
+S0 \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+m}{32} \PYGdefault{c+c1}{\PYGdefaultZsh{} precio spot del subyacente}
+sigma \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+m}{0.3} \PYGdefault{c+c1}{\PYGdefaultZsh{} volatilidad anual: 30 \PYGdefaultZbs{}\PYGdefaultZpc{}}
+tasa\PYGdefaultZus{}lr \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+m}{0.05} \PYGdefault{c+c1}{\PYGdefaultZsh{} tasa anual libre de riesgos: 5 \PYGdefaultZbs{}\PYGdefaultZpc{}}
+tiempo\PYGdefaultZus{}venc \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} \PYGdefault{l+m}{0.5} \PYGdefault{c+c1}{\PYGdefaultZsh{} tiempo al vencimiento: 6 meses}
+
+precio\PYGdefaultZus{}k1 \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} GBSOption\PYGdefault{p}{(}TypeFlag \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}c\PYGdefaultZsq{}}\PYGdefault{p}{,}
+                       S \PYGdefault{o}{=} S0\PYGdefault{p}{,}
+                       X \PYGdefault{o}{=} K1\PYGdefault{p}{,}
+                       Time \PYGdefault{o}{=} tiempo\PYGdefaultZus{}venc\PYGdefault{p}{,}
+                       r \PYGdefault{o}{=} tasa\PYGdefaultZus{}lr\PYGdefault{p}{,}
+                       b \PYGdefault{o}{=} tasa\PYGdefaultZus{}lr\PYGdefault{p}{,}
+                       sigma \PYGdefault{o}{=} sigma\PYGdefault{p}{)}\PYGdefault{o}{@}price
+
+precio\PYGdefaultZus{}k2 \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} GBSOption\PYGdefault{p}{(}TypeFlag \PYGdefault{o}{=} \PYGdefault{l+s}{\PYGdefaultZsq{}c\PYGdefaultZsq{}}\PYGdefault{p}{,}
+                       S \PYGdefault{o}{=} S0\PYGdefault{p}{,}
+                       X \PYGdefault{o}{=} K2\PYGdefault{p}{,}
+                       Time \PYGdefault{o}{=} tiempo\PYGdefaultZus{}venc\PYGdefault{p}{,}
+                       r \PYGdefault{o}{=} tasa\PYGdefaultZus{}lr\PYGdefault{p}{,}
+                       b \PYGdefault{o}{=} tasa\PYGdefaultZus{}lr\PYGdefault{p}{,}
+                       sigma \PYGdefault{o}{=} sigma\PYGdefault{p}{)}\PYGdefault{o}{@}price
+
+\PYGdefault{p}{(}bull\PYGdefaultZus{}spred \PYGdefault{o}{\PYGdefaultZlt{}\PYGdefaultZhy{}} precio\PYGdefaultZus{}k1 \PYGdefault{o}{\PYGdefaultZhy{}} precio\PYGdefaultZus{}k2\PYGdefault{p}{)}
+bullspreadcalls\PYGdefault{p}{()}
+
+\PYGdefault{c+c1}{\PYGdefaultZsh{} Para hacer el código reproducible fijemos la semilla del generador de}
+\PYGdefault{c+c1}{\PYGdefaultZsh{} números aleatorios.}
+\PYGdefault{k+kp}{set.seed}\PYGdefault{p}{(}\PYGdefault{l+m}{123}\PYGdefault{p}{)}
+\end{Verbatim}

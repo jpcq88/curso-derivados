@@ -20,11 +20,94 @@
 
 \section*{Punto 1}
 
+\subsection*{a)}
 
+Con la siguiente rutina del paquete RQuantLib de R se calcula la volatilidad implícita de la opción sobre el índice S\&P500, como ejemplo, el valor de la volatilidad implícita obtenido para un strike de 1.96 es 0.5233. Haciendo lo mismo para todos los valores del strike, objenemos la gráfica de la Figura~\ref{fig:p1a_grafico}.
+
+\begin{marginfigure}
+\centering
+\includegraphics[scale=0.4]{p1a_grafico.pdf}
+\caption{Gráfico de volatilidad impícita.}
+\label{fig:p1a_grafico}
+\end{marginfigure}
+
+\begin{minted}[frame=none,mathescape,fontsize=\footnotesize]{R}
+EuropeanOptionImpliedVolatility(type = 'call', value = 153.65,
+                                underlying = 2102.31, strike = 2110.20,
+                                riskFreeRate = 0.05, dividendYield = 0,
+                                maturity = 44 / 365, volatility = 0.25)
+\end{minted}
+
+Es valor del índice el 4 de nivimbre era 2102.31, el strike es 2110.20, la tasa libre de riesgo es 5 \%, el dividendo no aplica por ser un índice, la volatilidad estimada se saca del histórico del índice y da aproximadamente 25 \%, y el tienmpo es 44 días suponiendo que empezamos el 4 de noviembre y la fecha al vencimiento es el 18 de diciembre (tercer viernes).
+
+\subsection*{b)}
+
+De acuerdo con los datos históricos, el retorno y la volatilidad promedio diaria es $\mu = -9.6643\times10^{-5}$ (casi cero) y $\sigma = 0.0155$ respectivamente.
+
+Luego debemos mirar cuántas veces han caido y crecido los retornos diarios del índice por debajo o por encima de $- 3\times\sigma = -0.0466$ y $3\times\sigma = 0.0466$ respectivamente.
+
+\begin{marginfigure}[-3cm]
+\centering
+\includegraphics[scale=0.4]{p1b_grafico.pdf}
+\caption{Representación gráfica de los log-retornos que sobrepasan los valores críticos.}
+\end{marginfigure}
+
+Tomando solo los dos últimos años de los retornos diarios del índice S\&P500 se obtiene la Tabla~\ref{tab:p1b_frecuencias}. Se puede observar que es más frecuente que los retornos estén por debajo de tres desviaciones, casi el doble. En los últimos dos años 3.17 \% de los retornos diarios cayeron por debajo de $- 3\times\sigma$ y 1.78 \% subieron más de $3\times\sigma$.
+
+\begin{table}
+\caption{Frecuencia de los retornos por debajo y por encima de tres desviaciones estándar en los dos últimos años, 505 observaciones.}
+\label{tab:p1b_frecuencias}
+\centering
+\begin{tabular}{lrr}
+& Frecuencia & \% \\
+\hline
+Valores < $- 3\times\sigma$ & 16 & 3.17 \\
+Valores > $3\times\sigma$ & 9 & 1.78 \\
+\hline
+\end{tabular}
+\end{table}
+ 
+
+\subsection*{c)}
+
+Cuando se tiene una distribución de los precios del activo subyacente que es de cola izquiera más pesada y de cola derecha más liviana que la correspondiente distribución log-normal asumida, ver Figura~\ref{fig:p1c_grafico_dist}, da lugar una sonrisa de volatilidad con pendiente decreciente.
+
+Si el precio de la opción es una función monótona creciente de la volatilidad, entonces cuando $S_T << K$ el valor de la opción va a ser mayor ya que es más probable que ocurra si la distribución real de los precios es de cola izquierda pesada, lo cual implica que la volatilidad impícita debe ser también mayor. Por otro lado, si $S_T >> K$, que dadas las caracteristicas de la distribución es menos probable respecto a una log-normal, entonces en este caso la volatilidad implícita es menor, ya que el precio de la opción debería ser más bajo.
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{p1c_grafico_dist.pdf}
+\caption{Comparativo de distribución log-normal con una de cola izquierda más pesada y cola derecha más liviana.}
+\label{fig:p1c_grafico_dist}
+\end{figure}
+
+\section*{Punto 2}
 
 \subsection*{a)}
 
+Con la función GBSOption del paquete fOption de R se obtienen los precios $C_{K1} = 7.8967$ y $C_{K2} = 4.1837$, para un diferencial alcista de 3.7130.
 
+\begin{minted}[frame=none,mathescape,fontsize=\footnotesize]{R}
+precio_k1 <- GBSOption(TypeFlag = 'c',
+                       S = S0,
+                       X = K1,
+                       Time = tiempo_venc,
+                       r = tasa_lr,
+                       b = tasa_lr,
+                       sigma = sigma)@price # $C_{K1} = 7.8967$
+
+precio_k2 <- GBSOption(TypeFlag = 'c',
+                       S = S0,
+                       X = K2,
+                       Time = tiempo_venc,
+                       r = tasa_lr,
+                       b = tasa_lr,
+                       sigma = sigma)@price # $C_{K2} = 4.1837$
+\end{minted}
+
+\subsection*{b)}
+
+\subsection*{c)}
 
 \pagebreak
 
