@@ -85,7 +85,7 @@ Si el precio de la opción es una función monótona creciente de la volatilidad
 
 \subsection*{a)}
 
-Con la función GBSOption del paquete fOption de R se obtienen los precios $C_{K1} = 7.8967$ y $C_{K2} = 4.1837$, para un diferencial alcista de 3.7130.
+Con la función GBSOption del paquete fOption de R se obtienen los precios $C_{K1} = 7.8967$ y $C_{K2} = 4.1837$, para un diferencial alcista de $\frac{1}{K2 - K1} (C_{K1} - C_{K2}) = 0.7426$.
 
 \begin{minted}[frame=none,mathescape,fontsize=\footnotesize]{R}
 precio_k1 <- GBSOption(TypeFlag = 'c',
@@ -103,14 +103,85 @@ precio_k2 <- GBSOption(TypeFlag = 'c',
                        r = tasa_lr,
                        b = tasa_lr,
                        sigma = sigma)@price # $C_{K2} = 4.1837$
+
+bull_spred <- (1 / (K2 - K1)) * (precio_k1 - precio_k2) # 0.7426
+
+delta_k1 <- GBSGreeks(Selection = 'delta',
+                      TypeFlag = 'c',
+                      S = S0,
+                      X = K1,
+                      Time = tiempo_venc,
+                      r = tasa_lr,
+                      b = tasa_lr,
+                      sigma = sigma) # $\Delta_{K1}=0.9174$
+
+delta_k2 <- GBSGreeks(Selection = 'delta',
+                      TypeFlag = 'c',
+                      S = S0,
+                      X = K2,
+                      Time = tiempo_venc,
+                      r = tasa_lr,
+                      b = tasa_lr,
+                      sigma = sigma) # $\Delta_{K2}=0.7013$
 \end{minted}
 
 \subsection*{b)}
 
+Bajo esl modelo lineal, el cambio en el portafolio $\Delta P$ está definido como:
+
+\begin{align*}
+	\Delta P = S \delta \Delta x
+\end{align*}
+
+Donde $S$ es el precio de la opción, $\delta$ es el cambio del precio de la opción respecto al precio del subyacence, y $\Delta x$ es el retorno del sbyacente en seis mese, cuyo promedio es cero y suponemos que tiene una distribución normal. Por lo tanto, desviación estándar del portafolio es:
+
+\begin{align*}
+	\sigma_{\Delta P} = \sigma_S \sqrt{\delta t} \times S_0 \times \delta= 0.3 \times \sqrt{\frac{1}{2}} \times 32 \times (0.9174 + 0.7013) = 9.5212
+\end{align*}
+
+Donde $\delta = \Delta_{K1}+\Delta_{K2}$ es la suma de las sensibilidades de cada opción en el portafolio respecto al subyacente.
+
+Por lo tanto, el VaR por el método lineal para el portafolio (bull spread) de 1000 unidades, con una confianza del 99 \% es:
+
+\begin{align*}
+	VaR_P = -1000\times\Phi(0.01) \times \sigma_P  = -1000 \times (-2.3263) \times 9.5212 = \mathbf{\$ 22,149.67}
+\end{align*}
+
+Donde $\Phi(*)$ es la función de distribución normal inversa.
+
 \subsection*{c)}
 
-\pagebreak
+Bajo esl modelo cuadrático, el cambio en el portafolio $\Delta P$ está definido como:
 
+\begin{align*}
+	\Delta P = S \delta \Delta x + \frac{1}{2} S^2 \gamma (\Delta x)^2
+\end{align*}
+
+
+\begin{marginfigure}[2cm]
+\centering
+\includegraphics[scale=0.5]{p3c_densidades.pdf}
+\caption{Comparación densidades $\Delta P$ bajo el modelo lineal (negro) y cuadrático (azul). Las líneas verticales son los valores del VaR al 99 \% de cada modelo.}
+\label{fig:p3c_densidades}
+\end{marginfigure}
+
+En la Figura~\ref{fig:p3c_densidades} se mestran las dos densidades de $\Delta P$ bajo el modelo lineal y cuadrático usando simulación con 10 000 réplicas. Aunque las dos tienen la misma media, claramente la densidad bajo el modelo cuadrático no es simétrica, es sesgada a la derecha.
+
+Las estimaciones de los momentos con la muestra de 10 000 réplicas son: varianza $\sigma_P^2=126.30$, exceso de kurtosis $k = 1.1764$ y un sesgo $s = 0.9094$. Con la siguiente expansión de Cornish-Fisher podemos calcular el percentil 99 de la distribución de $\Delta P$ bajo el modelo cuadrático.
+
+\begin{align*}
+	q_{0.01} = \phi_{0.01} + \frac{s}{6}(\phi_{0.01} - 1) - \frac{s^2}{36}(2\phi_{0.01}^3 - 5\phi_{0.01}) + \frac{k}{24}(\phi_{0.01}^3 - 3\phi_{0.01})
+\end{align*}
+
+Remplazando $\phi_{0.01}=-2.3263$ y los momentos estimados anteriormente obtenemos un cuantil para la distribución del portafolio $q_{0.01} = -1.6214$. Por lo tanto, el VaR para el portafolio bajo el modelo cuadrático es:
+
+\begin{align*}
+	VaR_P = -1000\times q_{0.01} \times \sigma_P  = -1000 \times (-1.6214) \times 11.2374 = \mathbf{\$ 18,220.64}
+\end{align*}
+
+Notemos que bajo este modelo el VaR es menor, y tiene sentiido, ya que la cola izquierda que es la correspondiente a las pérdidas y es menos pesada comparada con el modelo lineal.
+
+\pagebreak
 \section*{Código de R utilizado}
 % Insertar código utilizado en R
 \inputminted
