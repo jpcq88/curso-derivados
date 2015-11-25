@@ -1,0 +1,87 @@
+\documentclass{tufte-handout}
+
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel}
+\spanishdecimal{.}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{minted}
+\usepackage{graphicx}
+
+\graphicspath{{../img/}}
+
+\title{Taller 4: Derivados Financieros}
+\author{Juan Pablo Calle Quintero}
+\date{27 de noviembre de 2015}
+
+\begin{document}
+\maketitle
+
+\section*{Punto 1}
+
+\subsection*{a)}
+
+Para los dos primero bonos, que no tienen cupón, la tasa cero es simplemente despejar $R(0,T)$ de la ecuación $100 = P(0,T) e^{T\times R(0,T)}$, con $P(0,T)$ el precio del bono al vencimiento $T$ en años. Para los otros dos casos usamos la estrategia bootstrap. Las tasas cero son:
+
+\begin{align*}
+& R(0,0.5)=ln\left(\frac{100}{98}\right) / 0.5 = 4.04 \% \\
+& R(0,1)=ln \left(\frac{100}{95}\right) / 1 = 5.13 \% \\
+& R(0,1.5) = ln((101 - 3.1 e^{-0.5 R(0,0.5)} - 3.1 e^{-1 R(0,1)}) / 103.1) / -1.5 = 5.44 \% \\
+& R(0,2) = ln((104 - 4 e^{-0.5 R(0,0.5)} - 4 e^{-1 R(0,1)} - 4 e^{-1.5 R(0,1.5)}) / 104) / -1.5 = 5.81 \%
+\end{align*}
+
+\subsection*{b)}
+
+En general, la tasa a plazo entre dos periodos $t$ y $T$, con $t < T$, es $f(0;t,T) = \frac{R(0,T)\times T-R(0,t)\times t}{T-t}$, luego:
+
+\begin{align*}
+& f(0;0.5,1)= \frac{R(0,1) \times 1 - R(0,0.5) \times 0.5}{1-0.5} = 6.22 \% \\
+& f(0;1,1.5)= \frac{R(0,1.5) \times 1.5 - R(0,1) \times 1}{1.5-1} = 6.07 \% \\
+& f(0;1.5,2) = \frac{R(0,2) \times 2 - R(0,1.5) \times 1.5}{2-1.5} = 6.91 \% 
+\end{align*}
+
+\subsection*{c)}
+
+El precio de un bono es el valor presente de todos los flujos de dinero que recibirá quien posee el bono. El cupon es 7 \% anual, pero como se paga cada 6 meses entonces es 3.5 \% semestral, que equivale a \$ 175 ya que el principal es \$ 5.000, por lo tanto, el precio del bono es:
+
+\begin{align*}
+P(0,2) = \, & \$ 175e^{-0.5\times R(0,0.5)} + \$ 175e^{-1\times R(0,1)} + \$ 175e^{-1.5\times R(0,1.5)} + \$ 5175e^{-2\times R(0,2)} \\
+ = \, & \$ 175e^{-0.5\times 4.04 \%} + \$ 175e^{-1\times 5.13 \%} + \$ 175e^{-1.5\times 5.44 \%} + \$ 5175e^{-2\times 5.81 \%} \\
+= \, & \$ 5,106.45
+\end{align*}
+
+Para el rendimiento debemos hallar $y$ en la siguiente ecuación:
+
+\begin{align*}
+\$ 175e^{-0.5y} + \$ 175e^{-1 y} + \$ 175e^{-1.5 y} + \$ 5175e^{-2 y} = \$ 5,106.45
+\end{align*}
+
+Usando la función multiroot() del paquete rootSolve de R, podemos usar el algoritmo de Newton-Raphson para hallar la solución. Obtenemos un rendimiento de $\mathbf{y=5.77 \%}$.
+
+\begin{minted}[mathescape,fontsize=\footnotesize]{R}
+yield <- function(r) {
+  yld <- 175 * exp(-0.5 * r) + 175 * exp(-1 * r) +
+    175 * exp(-1.5 * r) + 5175 * exp(-2 * r) - 5106.45
+  
+  return(yld)
+}
+
+multiroot(yield, start = 0.5)$root # 0.05772341
+\end{minted}
+
+
+\section*{Punto 2}
+
+\pagebreak
+\section*{Código de R utilizado}
+% Insertar código utilizado en R
+\inputminted
+[
+    frame=none,
+    mathescape,
+    fontsize=\small
+]{r}{../r/taller4.R}
+
+
+\end{document}
