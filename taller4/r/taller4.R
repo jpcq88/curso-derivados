@@ -69,6 +69,7 @@ tasa_int_c <- function(vp, vf, tiempo) {
   return(tasa)
 }
 
+
 ## Punto 1 ---------------------------------------------------------------------
 
 # a)
@@ -109,3 +110,36 @@ yield <- function(r) {
 }
 
 multiroot(yield, start = 0.5)$root
+
+
+## Punto 2 ---------------------------------------------------------------------
+
+rho <- 0.2 # correlación cópula
+tao <- rexp(1, rate = 1 / 30) # rate = 1 / mu
+
+# Gráfico de la distribución de \tau
+pdf('../img/p2_dist_exp.pdf', width = 7, height = 5)
+curve(dexp(x, rate = 1 / 30), from = 0, to = 120, ylim = c(0, 0.04),
+      #main = expression(paste('Distribución exponencial, ', mu, ' = 30 días')),
+      xlab = expression(tau), ylab = expression(f(tau)),
+      bty = 'n', yaxt = 'n', xaxt = 'n', cex.lab = 1
+      )
+box(col = 'grey', lwd = 1.5)
+axis(1, col = 'grey', col.ticks = 'grey', lwd = 1.5, cex.axis = 0.8)
+axis(2, at = c(0, 0.01, 0.02, 0.03, 0.04), col = 'grey', cex.axis = 0.8,
+     labels = c('0 %', '1 %', '2 %', '3 %', '4 %'), lwd = 1.5, las = 1)
+dev.off()
+
+Tpo <- 30 # tiempo en días
+prob_def <- 0.02 # probabilidad de default en 30 días
+Qt <- pexp(Tpo, 1 / 30)
+Nt <- qnorm(Qt)
+Nx <- qnorm(0.99)
+pnorm((Nt + sqrt(rho) * Nx) / sqrt(1 - rho)) * 1000000
+
+
+## Punto 3 ---------------------------------------------------------------------
+
+# a)
+
+

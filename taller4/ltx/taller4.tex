@@ -73,6 +73,25 @@ multiroot(yield, start = 0.5)$root # 0.05772341
 
 \section*{Punto 2}
 
+La probabilidad de que un cliente retire la plata del banco en 30 días o menos está dada por la función de distribución exponencial acumulada $F(x < 30, \lambda = 1/30) = 1 - e^{-\frac{1}{30} x} = 0.6321$. Bajo la transformación cópula, el tiempo distribuído normal estándar es $N^{-1}(F(x < 30, \lambda = 1/30))=N^{-1}(0.6321)=0.3375$.
+
+\begin{marginfigure}[-2cm]
+\includegraphics[scale=0.38]{p2_dist_exp.pdf}
+\caption{Distribución exponecial de los tiempos de retiro del dinero de los clientes.}
+\end{marginfigure}
+
+Por lo tanto, con una confianza del 99 \%, el máximo valor que los clientes pueden retirar en 30 días, suponiendo una correlación cópula $\rho=0.2$ es:
+
+\begin{align*}
+\$ 1,000,000 \times N\left(\frac{N^{-1}(0.6321) + \sqrt{\rho}N^{-1}(0.99)}{\sqrt{1-\rho}}\right) = \$ 938,278.6\text{ millones de pesos}
+\end{align*}
+
+\section*{Punto 3}
+
+\subsection*{a)}
+
+
+
 \pagebreak
 \section*{Código de R utilizado}
 % Insertar código utilizado en R
