@@ -12,9 +12,7 @@
 
 ## Librerías requeridas --------------------------------------------------------
 
-library(ggplot2) # gráficos de calidad
-library(gridExtra) # herramientas adicionales para graficar, grid.arrange()
-library(data.table) # manipulación de datos
+library(fOptions) # valorar opciones
 library(rootSolve) # hallar la reíces de una función
 
 
@@ -140,6 +138,26 @@ pnorm((Nt + sqrt(rho) * Nx) / sqrt(1 - rho)) * 1000000
 
 ## Punto 3 ---------------------------------------------------------------------
 
-# a)
+# No requiere programación
 
+
+# Punto 4 ----------------------------------------------------------------------
+
+S0 <- 30000
+K <- 10000
+tpo <- 4
+lambda <- -0.1
+sigma <- 0.15
+mu <- -0.25
+
+r <- -(lambda * sigma - mu)
+precio_esp <- S0 * exp(r * tpo)
+
+d1 <- (log(precio_esp / K) + sigma^2 * tpo / 2)/(sigma * sqrt(tpo))
+d2 <- (log(precio_esp / K) - sigma^2 * tpo / 2)/(sigma * sqrt(tpo))
+
+phi1 <- pnorm(d1)
+phi2 <- pnorm(d2)
+
+(C_T <- exp(-0.06 * tpo) * (precio_esp * phi1 - K * phi2))
 

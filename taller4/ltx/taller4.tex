@@ -90,7 +90,57 @@ Por lo tanto, con una confianza del 99 \%, el máximo valor que los clientes pue
 
 \subsection*{a)}
 
+Si en $f(t;T_1,T_2) = \frac{e^{R(t,T_2)} - e^{R(t,T_1)}}{e^{R(t,T_1)}}$ hacemos $t=T_1$ entonces tenemos $f(T_1;T_1,T_2) = \frac{e^{R(T_1,T_2)} - e^{R(T_1,T_1)}}{e^{R(T_1,T_1)}}$, pero las tasa a vista en $T_1$ $R(T_1,T_1) = 0$ pues el no ha transcurrido tiempo, porlo tanto, $f(T_1;T_1,T_2) = \frac{e^{R(T_1,T_2)} - e^{0}}{e^{0}} = e^{R(T_1,T_2)}  - 1$
 
+\subsection*{b)}
+
+La fórmula Black-Scholes para un \textit{floorlet} es: %\footnote{http://www.mathematik.uni-muenchen.de/~filipo/ZINSMODELLE/zinsmodelle1.pdf}
+
+\begin{align*}
+Fl(t) = L(T_2-T_1) P(t, T_2) (k \Phi(-d_2(t))) - f(t;T_1,T_2) \Phi(-d_1(t))
+\end{align*}
+
+Donde $\Phi(*)$ es la distribución normal estándar acumulada, $L$ es el principal, $k$ es la tasa piso acordada para pagarse en $T_1$ hasta $T_2$, $f(t;T_1,T_2)$ es la tasa a plazo acortada en el instante $t$ para un depósito entre $T_1$ y $T_2$, y $d_1(t)$, $\sigma(t)$ es la volatilidad de la tasa a plazo $f(t;T_1,T_2)$, y $d_2(t)$ son, respectivamente:
+
+\begin{align*}
+d_1(t) = \frac{log \left(\frac{f(t;T_1, T_2}{k}\right) + \frac{1}{2} \sigma(t)^2(T_1 - t)}{\sigma(t)\sqrt{T_1-t}}
+\end{align*}
+
+\begin{align*}
+d_2(t) = \frac{log \left(\frac{f(t;T_1, T_2}{k}\right) - \frac{1}{2} \sigma(t)^2(T_1 - t)}{\sigma(t)\sqrt{T_1-t}}
+\end{align*}
+
+\subsection*{c)}
+
+La ecuación anterior en términos de un bono es:%\footnote{http://www.rstapleton.com/papers/interest-rate\%20derivatives.pdf}
+
+\begin{align*}
+Fl(t) = [B_{t, T_2} \Phi(d_1) - KB_{t,T}\Phi(d_2)](1 + k(T_2-T_1))
+\end{align*}
+
+Donde:
+
+\begin{align*}
+d_1(t) =\, & \frac{log \left(\frac{f(t;T_1, T_2}{K}\right) + \frac{1}{2} \sigma'(t)^2(T_1 - t)}{\sigma'(t)\sqrt{T_1-t}} \\
+d_2(t) =\, & d_1(t) - \sigma'(t)\sqrt{T_1-t} \\
+K =\, & \frac{1}{1+k(T_2-T_1)}
+\end{align*}
+
+En este caso, $B_{t, T_2}$ es el precio en $t$ de un bono que paga \$ 1 en $T_2$, $\sigma'(t)$ es la volatilidad del bono cero cupón y $K$ es el precio de ejercicio de una opción equivalente sobre el bono.
+
+
+%\subsection*{d)}
+
+
+\section*{Punto 4}
+
+Como $\mu$ es la tasa esperada de crecimiento, sí tienen sentido que sea negativa, pues un camión es un activo que se deprcia con el tiempo, es decir pierde valor. La tasa esperada de crecimiento del precio del camión es $r = -(\sigma \times \lambda ) - \mu) = -0.235$. Por lo tanto, el valor esperado del precio $S_T$ del camión en 4 años es $\hat{E}(S_t) = \$ 30,000 \times e^{-0.235\times4}=\$ 11,718.83$. El valor de la opción es entonces:
+
+\begin{align*}
+C_T = e^{-rT}[\hat{E}(S_t)\Phi(d_1) - K\Phi(d_1) ]
+\end{align*}
+
+Con $d_1=\frac{ln(\hat{E}(S_t)/K) + \sigma^2T/2}{\sigma \sqrt{T}}$ y $d_2=\frac{ln(\hat{E}(S_t)/K) - \sigma^2T/2}{\sigma \sqrt{T}}$ y remplazando a $r = 0.06$, $\sigma=0.15$, $T=4$ y $K=\$ 10,000$ el precio de la opción es $\mathbf{C_T=\$ 1,832.32}$.
 
 \pagebreak
 \section*{Código de R utilizado}
